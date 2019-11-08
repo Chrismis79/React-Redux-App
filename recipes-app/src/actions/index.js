@@ -12,8 +12,8 @@ export const getRecipes = () => dispatch => {
     dispatch({type: FETCH_START});
     axios.get(`https://api.edamam.com/search?q=chicken&app_id=${API_ID}&app_key=${API_KEY}`)
     .then(res => {
-        console.log(res);
-        dispatch({type: FETCH_SUCCESS, payload: res})
+        console.log(res.data.hits);
+        dispatch({type: FETCH_SUCCESS, payload: res.data.hits})
     })
-    .catch(err => dispatch({type: FETCH_FAILED, payload: err.response.message}))
+    .catch(err => dispatch({type: FETCH_FAILED, payload: err.response}))
 }

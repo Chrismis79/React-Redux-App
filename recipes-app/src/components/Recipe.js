@@ -1,20 +1,22 @@
 import React from 'react';
-import RecipeList from './RecipeList';
 
-const Recipe = () => {
+
+const Recipe = props => {
     return (
         <>
-        <h1>Title</h1>
-        <p>Total Time: </p>
-        <img/>
-        {/* //map over items here */}
-        <ol>
-            <li>Ingredient List items</li>
-        </ol>
-        <p>Total Calories: </p>
-        <p>Serves: </p>
-        <p>Calories per Serving: </p>
-        <p>Recipe is from ... and can be found //here</p>
+        <h1>{props.title}</h1>
+        <p>Total Time: {props.time} minutes</p>
+        <img src={props.image} alt={props.title}/>
+    
+        <ul>
+            {props.ingredients.map(ingredient => (
+                <li>{ingredient.text}</li>
+            ))}
+        </ul>
+        <p>Total Calories: {props.calories}</p>
+        <p>Serves: {props.servings}</p>
+        <p>Calories per Serving: {props.calPerServ}</p>
+        <p>Recipe is from {props.source} and can be found <a href={props.url} target="_blank">HERE</a></p>
         </>
     )
 };
