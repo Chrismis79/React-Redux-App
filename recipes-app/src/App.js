@@ -1,24 +1,17 @@
 import React from 'react';
-import logo from './logo.svg';
+import RecipeList from './components/RecipeList';
+
 import './App.css';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        {/* <img src={} className="header-img" alt="#" /> */}
       </header>
+      <h1>Find your next meal!</h1>
+      <RecipeList/>
+
     </div>
   );
 }
