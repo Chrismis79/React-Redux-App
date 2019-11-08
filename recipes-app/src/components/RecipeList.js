@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Recipe from './Recipe';
 
 const RecipeList = () => {
+    useEffect(() => {
+        //fetch recipes
+    }, []);
     return (
         <div>
             <p>Map over recipe and display</p>
@@ -10,5 +13,5 @@ const RecipeList = () => {
     )
 }
 
-
+//mapStateToProps and connect
 export default RecipeList;
