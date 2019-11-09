@@ -1,13 +1,25 @@
-import {FETCH_START, FETCH_SUCCESS, FETCH_FAILED} from '../actions';
+import {FETCH_START, FETCH_SUCCESS, FETCH_FAILED, SET_SEARCH} from '../actions';
 
 const initialState = {
     recipes:  [],
     isFetching: false,
-    error: null
+    error: null,
+    item: ''
 };
 
 const reducer = (state = initialState, action) => {
     switch(action.type) {
+        case SET_SEARCH: {
+            return {
+                ...state,
+                item: action.payload,
+                recipes: [],
+                isFetching: true,
+                error: null,
+            }
+
+        }
+
         case FETCH_START:
             return {
                 ...state,
