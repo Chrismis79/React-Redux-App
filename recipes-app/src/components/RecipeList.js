@@ -21,10 +21,10 @@ const RecipeList = props => {
     //     props.getRecipes(searchCreator(item));
     // };
 
-    const getItem = (item) => {
+    const getItem = (input) => {
         //fetch recipes
          
-        props.getRecipes(item);
+        props.getRecipes(input);
     }
 
     if(props.isFetching) {
@@ -36,7 +36,7 @@ const RecipeList = props => {
     return (
         <div>
             <form onSubmit={getItem}>
-                <input type='text' value={props.item} onChange={handleChanges} placeholder='Type main ingredient here...'/>
+                <input type='text' value={props.getRecipes} onChange={handleChanges} placeholder='Type main ingredient here...'/>
                 <button type='submit' onClick={getRecipes}>Search</button>
             </form>
             <h4>{props.item} Recipes:</h4>
@@ -64,7 +64,7 @@ const mapStateToProps = state => {
         recipes: state.recipes,
         isFetching: state.isFetching,
         error: state.error,
-        item: state.item
+        
     }
 }
 export default connect(mapStateToProps, {getRecipes})(RecipeList);
