@@ -1,43 +1,41 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
 import {getRecipes} from '../actions';
 import Recipe from './Recipe';
 
 
 
-
-// const searchCreator = item => {
-//     return { type: "SET_SEARCH", payload: item };
-//   };
-
 const RecipeList = props => {
+    const [search, setSearch] = useState('');
+    const [query, setQuery] = useState('');
+    
+    useEffect((item) => {
+        props.getRecipes(item);
+    }, [query])
+    
     
     const handleChanges = e => {
-        e.preventDefault();
-        props.getRecipes(e.target.value);
+        setSearch(e.target.value);
+        
     };
 
-    // const saveSearchTerm = () => {
-    //     props.getRecipes(searchCreator(item));
-    // };
-
-    const getItem = (input) => {
-        //fetch recipes
+     const getSearch = e => {
+         e.preventDefault();
+         setQuery(search);
+         props.getRecipes(search);
+         setSearch('');
          
-        props.getRecipes(input);
-    }
+    };
 
     if(props.isFetching) {
         return <h2>Bringing on the yum...</h2>
     };
 
-    
-
     return (
         <div>
-            <form onSubmit={getItem}>
-                <input type='text' value={props.getRecipes} onChange={handleChanges} placeholder='Type main ingredient here...'/>
-                <button type='submit' onClick={getRecipes}>Search</button>
+            <form onSubmit={getSearch}>
+                <input type='text' value={search} onChange={handleChanges} placeholder='Type main ingredient here...'/>
+                <button type='submit'>Search</button>
             </form>
             <h4>{props.item} Recipes:</h4>
              {props.error && <p>{props.error}</p>}
@@ -64,7 +62,7 @@ const mapStateToProps = state => {
         recipes: state.recipes,
         isFetching: state.isFetching,
         error: state.error,
-        
+        query: state.query
     }
 }
 export default connect(mapStateToProps, {getRecipes})(RecipeList);

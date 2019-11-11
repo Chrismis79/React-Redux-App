@@ -1,10 +1,11 @@
 import {FETCH_START, FETCH_SUCCESS, FETCH_FAILED} from '../actions';
 
+
 const initialState = {
     recipes:  [],
     isFetching: false,
     error: null,
-    search: 'chicken'
+  
 };
 
 const reducer = (state = initialState, action) => {
@@ -15,7 +16,7 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 isFetching: true,
                 error: null,
-            
+                
             };
         case FETCH_SUCCESS:
             return {
