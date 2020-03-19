@@ -1,11 +1,11 @@
-import {FETCH_START, FETCH_SUCCESS, FETCH_FAILED} from '../actions';
+import {FETCH_START, FETCH_SUCCESS, FETCH_FAILED, FETCH_SEARCH, SEARCH_SUCCESS, SEARCH_FAILED} from '../actions';
 
 
 const initialState = {
     recipes:  [],
     isFetching: false,
+    isSearching: false,
     error: null,
-  
 };
 
 const reducer = (state = initialState, action) => {
@@ -15,24 +15,46 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 isFetching: true,
+                isSearching: false,
                 error: null,
-                
             };
         case FETCH_SUCCESS:
             return {
                 ...state,
                 recipes: action.payload,
                 isFetching: false,
+                isSearching: false,
                 error: null,
-                
             };
         case FETCH_FAILED:
             return {
                 ...state,
                 isFetching: false,
+                isSearching: false,
                 error: action.payload,
-                
             };
+        case FETCH_SEARCH:
+            return {
+                ...state,
+                isFetching: false,
+                isSearching: true,
+                error: null
+            };
+        case SEARCH_SUCCESS:
+            return {
+                ...state,
+                recipes: action.payload,
+                isFetching: false,
+                isSearching: false,
+                error: null
+            };
+        case SEARCH_FAILED:
+            return {
+                ...state,
+                isFetching: false,
+                isSearching: false,
+                error: action.payload
+            }
         default:
             return state;            
     }

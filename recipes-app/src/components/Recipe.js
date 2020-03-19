@@ -10,7 +10,7 @@ const Recipe = props => {
     
         <ul>
             {props.ingredients.map(ingredient => (
-                <li>{ingredient.text}</li>
+                <li key={ingredient.index}>{ingredient.text}</li>
             ))}
         </ul>
         <p>Total Calories: {props.calories}</p>
